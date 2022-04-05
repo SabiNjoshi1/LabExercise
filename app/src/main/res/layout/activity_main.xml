@@ -6,54 +6,60 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/text_header_reply"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/text_header_reply"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textStyle="bold"
-        android:visibility="invisible"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="0dp"
+        android:layout_height="80dp"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/text_message_reply"
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:visibility="invisible"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:text="Two Activities - Coding Challenge"
+        android:textColor="#FDFDFD"
+        android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_header_reply" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button_main"
+        android:id="@+id/textOne"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:layout_marginRight="16dp"
-        android:text="@string/button_main"
-        android:onClick="launchSecondActivity"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+        android:layout_marginTop="108dp"
+        android:text="TEXT ONE"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
-    <EditText
-        android:id="@+id/editText_main"
-        android:layout_width="0dp"
+    <Button
+        android:id="@+id/textTwo"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:ems="10"
-        android:hint="@string/editText_main"
-        android:inputType="textLongMessage"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/button_main"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:layout_marginTop="108dp"
+        android:text="TEXT TWO"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textOne" />
 
+    <Button
+        android:id="@+id/textThree"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="104dp"
+        android:text="TEXT THREE"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textTwo" />
 </androidx.constraintlayout.widget.ConstraintLayout>

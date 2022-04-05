@@ -2,70 +2,54 @@ package com.example.labexercise;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.os.Bundle;
 import android.content.Intent;
-import android.util.Log;
+import android.os.Bundle;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.Button;
 
-public class MainActivity extends AppCompatActivity {
-    private static final String LOG_TAG = MainActivity.class.getSimpleName();
-    public static final String EXTRA_MESSAGE
-            = "com.example.android.twoactivities.extra.MESSAGE";
-    public static final int TEXT_REQUEST = 1;
-    private EditText mMessageEditText;
-    private TextView mReplyHeadTextView;
-    private TextView mReplyTextView;
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    /**
-     * Initializes the activity.
-     *
-     * @param savedInstanceState The current state data.
-     */
+    private Button mTextOne, mTextTwo, mTextThree;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mMessageEditText = findViewById(R.id.editText_main);
-        mReplyHeadTextView = findViewById(R.id.text_header_reply);
-        mReplyTextView = findViewById(R.id.text_message_reply);
+
+        mTextOne = findViewById(R.id.textOne);
+        mTextTwo = findViewById(R.id.textTwo);
+        mTextThree = findViewById(R.id.textThree);
+
+        mTextOne.setOnClickListener(this);
+        mTextTwo.setOnClickListener(this);
+        mTextThree.setOnClickListener(this);
     }
 
-    /**
-     * Handles the onClick for the "Send" button. Gets the value of the main EditText,
-     * creates an intent, and launches the second activity with that intent.
-     *
-     * The return intent from the second activity is onActivityResult().
-     *
-     * @param view The view (Button) that was clicked.
-     */
-    public void launchSecondActivity(View view) {
-        Log.d(LOG_TAG, "Button clicked!");
-        Intent intent = new Intent(this, SecondActivity.class);
-        String message = mMessageEditText.getText().toString();
-        intent.putExtra(EXTRA_MESSAGE, message);
-        startActivityForResult(intent, TEXT_REQUEST);
-    }
-
-    /**
-     * Handles the data in the return intent from SecondActivity.
-     *
-     * @param requestCode Code for the SecondActivity request.
-     * @param resultCode Code that comes back from SecondActivity.
-     * @param data Intent data sent back from SecondActivity.
-     */
     @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
+    public void onClick(View view) {
+        Intent intent = new Intent(MainActivity.this, SecondActivity.class);
 
-        if (requestCode == TEXT_REQUEST) {
-            if (resultCode == RESULT_OK) {
-                String reply = data.getStringExtra(SecondActivity.EXTRA_REPLY);
-                mReplyHeadTextView.setVisibility(View.VISIBLE);
-                mReplyTextView.setText(reply);
-                mReplyTextView.setVisibility(View.VISIBLE);
-            }
+        switch (view.getId())
+        {
+            case R.id.textOne:
+                Intent intentOne = new Intent(MainActivity.this, SecondActivity.class);
+                intentOne.putExtra("TextOne",getString(R.string.text_one));
+                startActivity(intentOne);
+                break;
+
+            case R.id.textTwo:
+                Intent intentTwo = new Intent(MainActivity.this, ThirdActivity.class);
+                intentTwo.putExtra("TextTwo",getString(R.string.text_two));
+                startActivity(intentTwo);
+                break;
+
+            case R.id.textThree:
+                Intent intentThree = new Intent(MainActivity.this, FourthActivity.class);
+                intentThree.putExtra("TextThree",getString(R.string.text_three));
+                startActivity(intentThree);
+                break;
         }
+
+
     }
 }
