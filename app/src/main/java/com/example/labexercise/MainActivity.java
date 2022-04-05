@@ -6,50 +6,44 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private Button mTextOne, mTextTwo, mTextThree;
-
+    private Button mSayHello, mCount;
+    private TextView mTextView;
+    private int counter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mTextOne = findViewById(R.id.textOne);
-        mTextTwo = findViewById(R.id.textTwo);
-        mTextThree = findViewById(R.id.textThree);
+        mSayHello = findViewById(R.id.sayHello);
+        mCount = findViewById(R.id.count);
+        mTextView = findViewById(R.id.textView);
 
-        mTextOne.setOnClickListener(this);
-        mTextTwo.setOnClickListener(this);
-        mTextThree.setOnClickListener(this);
+        counter =0;
+
+        mSayHello.setOnClickListener(this);
+        mCount.setOnClickListener(this);
+
     }
 
     @Override
     public void onClick(View view) {
-        Intent intent = new Intent(MainActivity.this, SecondActivity.class);
 
         switch (view.getId())
         {
-            case R.id.textOne:
-                Intent intentOne = new Intent(MainActivity.this, SecondActivity.class);
-                intentOne.putExtra("TextOne",getString(R.string.text_one));
-                startActivity(intentOne);
+            case R.id.sayHello:
+                Intent intent = new Intent(MainActivity.this, HelloToast.class);
+                intent.putExtra("CounterValue", ""+counter);
+                startActivity(intent);
                 break;
 
-            case R.id.textTwo:
-                Intent intentTwo = new Intent(MainActivity.this, ThirdActivity.class);
-                intentTwo.putExtra("TextTwo",getString(R.string.text_two));
-                startActivity(intentTwo);
-                break;
-
-            case R.id.textThree:
-                Intent intentThree = new Intent(MainActivity.this, FourthActivity.class);
-                intentThree.putExtra("TextThree",getString(R.string.text_three));
-                startActivity(intentThree);
+            case R.id.count:
+                counter++;
+                mTextView.setText(""+counter);
                 break;
         }
-
-
     }
 }
